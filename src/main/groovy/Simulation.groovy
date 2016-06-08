@@ -14,17 +14,22 @@ class Simulation {
         this.action = action
     }
 
-    def play(int times) {
-        for (int i in 1..times) {
+    def play(int iterations) {
+        for (int i in 1..iterations) {
             show.pick(random.nextInt(3))
-            results.add(show.result())
+            show.showGoat()
             action(show)
+            results.add(show.result())
             show.reset()
         }
     }
 
     def results() {
         return results
+    }
+
+    static List<String> getWins(List<String> results) {
+        return results.findAll({it == "car"})
     }
 
 }

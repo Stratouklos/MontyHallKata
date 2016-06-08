@@ -20,7 +20,7 @@ class SimulationTest extends Specification {
 
     def "Should be actually playing the game"() {
         simulation.play(100)
-        def wins = simulation.results().findAll {it == "car"}
+        def wins = Simulation.getWins(simulation.results())
 
         expect:
         wins.size() > 0
@@ -30,9 +30,11 @@ class SimulationTest extends Specification {
     def "Should be able to simulate flipping always"() {
         def simulation = new Simulation({it.flip()})
         simulation.play(100)
+        def wins = Simulation.getWins(simulation.results())
 
         expect:
-        simulation.getResults().size() == 100
+        wins.size() > 0
+        wins.size() < 100
     }
 
 
