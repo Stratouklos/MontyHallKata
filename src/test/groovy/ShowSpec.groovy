@@ -27,4 +27,13 @@ class ShowSpec extends Specification {
         expect:
         show.result() == "car"
     }
+
+    def "The player should be able to switch doors"() {
+        show.pick(1)
+        show.showGoat()
+        show.flip()
+
+        expect:
+        show.result() == "car"
+    }
 }

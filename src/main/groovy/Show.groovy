@@ -3,9 +3,9 @@ class Show{
 
     final Random random
 
-    String[] doors
+    List<String> doors
 
-    int selection
+    String selection
 
     def Show(long seed) {
         random = new Random(seed)
@@ -14,14 +14,27 @@ class Show{
 
     def reset() {
         doors = ["goat", "goat", "goat"]
-        doors[random.nextInt(doors.size())] = "car"
+        hidePrize()
     }
 
+
     def pick(int door) {
-        selection = door
+        selection = doors.remove(door)
+    }
+
+    def showGoat() {
+        doors.remove("goat")
+    }
+
+    def flip() {
+        selection = doors.first()
     }
 
     def result() {
-        return doors[selection]
+        return selection
+    }
+
+    private void hidePrize() {
+        doors[random.nextInt(doors.size())] = "car"
     }
 }
